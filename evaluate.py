@@ -25,7 +25,7 @@ alexnet = AlexNet(input_width=INPUT_WIDTH, input_height=INPUT_HEIGHT, input_chan
                   num_classes=NUM_CLASSES, learning_rate=LEARNING_RATE, momentum=MOMENTUM, keep_prob=KEEP_PROB)
 
 with tf.Session() as sess:
-    print('Evaluating mnist dataset...')
+    print('Evaluating dataset...')
     print()
 
     sess.run(tf.global_variables_initializer())
@@ -33,6 +33,8 @@ with tf.Session() as sess:
     print('Loading model...')
     print()
     alexnet.restore(sess, './model')
+
+    print('Evaluating...')
 
     train_accuracy = alexnet.evaluate(sess, X_train, Y_train, BATCH_SIZE)
     test_accuracy = alexnet.evaluate(sess, X_test, Y_test, BATCH_SIZE)
