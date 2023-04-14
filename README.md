@@ -1,5 +1,18 @@
 In the name of God
 
+# Easy start and train on ubuntu
+install python3 and goto in root of project directory:
+```
+sudo apt-get install python3-venv python3-pip -y
+wget https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz
+tar -xf cifar-10-python.tar.gz
+mv cifar-10-batches-py/ cifar-10
+python3 -m venv env
+source env/bin/activate
+pip3 install -r requirements.txt
+python3 train.py 100
+```
+
 # AlexNet
 This repository contains implementation of [AlexNet](https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf)
 (ImageNet Classification with Deep Convolutional Neural Networks) by Tensorflow and the network tested with the

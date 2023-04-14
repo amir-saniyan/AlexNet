@@ -6,6 +6,8 @@
 import pickle
 import numpy as np
 import scipy.misc
+import PIL
+from PIL import Image
 
 
 def __unpickle(file):
@@ -39,7 +41,7 @@ def read_cifar_10(image_width, image_height):
             image = batch[b'data'][i].reshape(3, 32, 32).transpose([1, 2, 0])
             label = batch[b'labels'][i]
 
-            X = scipy.misc.imresize(image, size=(image_height, image_width), interp='bicubic')
+            X = np.array(Image.fromarray(image).resize((image_height, image_width), resample=Image.BICUBIC) )
             Y = np.zeros(shape=[len(classes)], dtype=np.int)
             Y[label] = 1
 
@@ -57,7 +59,7 @@ def read_cifar_10(image_width, image_height):
         image = test_batch[b'data'][i].reshape(3, 32, 32).transpose([1, 2, 0])
         label = test_batch[b'labels'][i]
 
-        X = scipy.misc.imresize(image, size=(image_height, image_width), interp='bicubic')
+        X = np.array(Image.fromarray(image).resize((image_height, image_width), resample=Image.BICUBIC))
         Y = np.zeros(shape=[len(classes)], dtype=np.int)
         Y[label] = 1
 

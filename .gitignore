@@ -3,3 +3,5 @@ cifar-10/
 model/
 log/
 __pycache__/
+
+env/*
