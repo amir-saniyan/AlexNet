@@ -24,16 +24,15 @@ BATCH_SIZE = 128
 
 argsCount = len(sys.argv)
 if(argsCount<=1):
-    print("Note: You could provide an epoch number in arguments too.\
-        default epoch is chosen while it's recommended.)")
+    print("\nNote: You could provide an epoch number in arguments too. default epoch is chosen while it's recommended.)\n")
 else:
     if(not sys.argv[1].isdigit()):
         print("please enter number of epoch(integer)")
         exit()
-    print("We recommend leaving epoch at its default value of ${epochs_var} .")
+    print(f"\nWe recommend leaving epoch at it's default value of {epochs_var} .")
     epochs_var=sys.argv[1]
 
-print("Epochs = " , epochs_var)
+print("Epochs = " , epochs_var , "\n")
 
 print('Reading CIFAR-10...')
 X_train, Y_train, X_test, Y_test = read_cifar_10(image_width=INPUT_WIDTH, image_height=INPUT_HEIGHT)
