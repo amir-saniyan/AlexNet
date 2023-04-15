@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 from alexnet import AlexNet
 from dataset_helper import read_cifar_10
