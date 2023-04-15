@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 from alexnet import AlexNet
 from dataset_helper import read_cifar_10
+import sys
 
 INPUT_WIDTH = 70
 INPUT_HEIGHT = 70
@@ -15,8 +17,22 @@ LEARNING_RATE = 0.001   # Original value: 0.01
 MOMENTUM = 0.9
 KEEP_PROB = 0.5
 
-EPOCHS = 100
+epochs_var = 100
+
 BATCH_SIZE = 128
+
+
+argsCount = len(sys.argv)
+if(argsCount<=1):
+    print("\nNote: You could provide an epoch number in arguments too. default epoch is chosen while it's recommended.)\n")
+else:
+    if(not sys.argv[1].isdigit()):
+        print("please enter number of epoch(integer)")
+        exit()
+    print(f"\nWe recommend leaving epoch at it's default value of {epochs_var} .")
+    epochs_var=sys.argv[1]
+
+print("Epochs = " , epochs_var , "\n")
 
 print('Reading CIFAR-10...')
 X_train, Y_train, X_test, Y_test = read_cifar_10(image_width=INPUT_WIDTH, image_height=INPUT_HEIGHT)
@@ -34,7 +50,7 @@ with tf.Session() as sess:
 
     sess.run(tf.global_variables_initializer())
 
-    for i in range(EPOCHS):
+    for i in range(int(epochs_var)):
 
         print('Calculating accuracies...')
 
